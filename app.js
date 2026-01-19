@@ -50,7 +50,11 @@ const store = MongoStore.create({
     touchAfter: 24 * 3600 // time period in seconds after which session will be updated 
 });
 
+<<<<<<< HEAD
 store.on("error", (err) => {
+=======
+store.on("error", () => {
+>>>>>>> 842a806231a2f9b87e031175153213b95fd15288
     console.log("ERROR IN MONGO SESSION STORE", err);
 });
 
@@ -75,7 +79,10 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
+<<<<<<< HEAD
 
+=======
+>>>>>>> 842a806231a2f9b87e031175153213b95fd15288
 passport.use(new LocalStrategy (User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
