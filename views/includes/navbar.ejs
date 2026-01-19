@@ -38,19 +38,11 @@
         </div>
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="/listings/new">Airbnb your home</a>
-<<<<<<< HEAD
           <% if(typeof currUser === 'undefined' || !currUser) { %>
           <a class="nav-link" href="/signup"><b>Signup</b></a>
           <a class="nav-link" href="/login"><b>Login</b></a>
           <% } %>
           <% if(typeof currUser !== 'undefined' && currUser) { %>
-=======
-          <% if(!currUser) { %>
-          <a class="nav-link" href="/signup"><b>Signup</b></a>
-          <a class="nav-link" href="/login"><b>Login</b></a>
-          <% } %>
-          <% if(currUser) { %>
->>>>>>> 842a806231a2f9b87e031175153213b95fd15288
           <a class="nav-link" href="/logout"><b>Logout</b></a>
           <% } %>
         </div>
