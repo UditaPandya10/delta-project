@@ -118,3 +118,32 @@ body {
     width: 80vh;
     
 }
+
+/* RESPONSIVE FIXES */
+@media (max-width: 768px) {
+    /* Fix map overflow */
+    #map {
+        max-width: 100%;
+    }
+    
+    /* Fix offset pushing content off screen */
+    .col-6.offset-3, .col-8.offset-3 {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Make filters scrollable horizontally */
+    #filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+    
+    .filter {
+        flex-shrink: 0;
+    }
+    
+    /* Fix review cards */
+    .card.col-5 {
+        width: 100% !important;
+    }
+}

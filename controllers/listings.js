@@ -4,8 +4,23 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async(req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings }, )
+        const { search } = req.query;
+
+        // Build a simple case-insensitive search across common fields.
+        // Using regex for flexibility on a small dataset; switch to text indexes for scale.
+        const filter = search
+            ? {
+                    $or: [
+                        { title: { $regex: search, $options: "i" } },
+                        { location: { $regex: search, $options: "i" } },
+                        { country: { $regex: search, $options: "i" } },
+                        { description: { $regex: search, $options: "i" } },
+                    ],
+                }
+            : {};
+
+        const allListings = await Listing.find(filter);
+        res.render("listings/index.ejs", { allListings, search });
 };
 
 module.exports.renderNewForm =  (req, res) => {

@@ -88,6 +88,13 @@
       </div>
     </div>
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+      <% if(allListings.length === 0) { %>
+        <div class="col-12 text-center py-5">
+          <h5>No matches found<% if(search) { %> for "<%= search %>"<% } %>.</h5>
+          <p class="text-muted">Try another destination, landmark, or keyword.</p>
+        </div>
+      <% } %>
+
       <% for(let listing of allListings) { %> 
         <a href="/listings/<%= listing._id %>" class="listing-link">
         <div class="card col listing-card">
@@ -107,15 +114,18 @@
     </div>
 
 <script>
-  let taxSwitch = document.getElementById("switchCheckDefault");
-  taxSwitch.addEventListener("click", () => {
-    let taxInfo = document.getElementsByClassName("tax-info");
-    for(info of taxInfo) {
-      if(info.style.display != inline) {
-      info.style.display = "inline";
-    } else {
-      info.style.display = "none";
+  const taxSwitch = document.getElementById("switchCheckDefault");
+  const taxInfos = document.getElementsByClassName("tax-info");
+
+  const renderTax = (show) => {
+    for (const info of taxInfos) {
+      info.style.display = show ? "inline" : "none";
     }
-    }
+  };
+
+  // Sync initial state and toggle on change
+  renderTax(taxSwitch.checked);
+  taxSwitch.addEventListener("change", (e) => {
+    renderTax(e.target.checked);
   });
 </script>
