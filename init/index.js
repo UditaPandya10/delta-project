@@ -29,12 +29,13 @@ const initDB = async () => {
     await User.deleteMany({});
     
     // Create a demo user
+    // TODO: Set your own credentials before running this script
     const demoUser = new User({
-        email: "demo@gmail.com",
-        username: "demouser"
+        email: "your_email@example.com",  // Change this
+        username: "your_username"          // Change this
     });
     
-    const registeredUser = await User.register(demoUser, "demo123");
+    const registeredUser = await User.register(demoUser, "your_password");  // Change this
     console.log("Demo user created:", registeredUser.username);
     
     // Assign all listings to the demo user
